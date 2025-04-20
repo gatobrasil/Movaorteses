@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escolha sua Órtese</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0077cc;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .ortese {
+      width: 150px;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    .form-section {
+      margin-top: 30px;
+    }
+    .inputs input {
+      width: 45px;
+      padding: 5px;
+      text-align: center;
+      margin: 0 2px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    footer {
+      margin-top: 40px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">OrtoFácil3D</div>
+  <h1>Escolha sua Órtese</h1>
+
+  <div class="gallery">
+    <div>
+      <img src="https://i.imgur.com/EvCREXC.jpeg" class="ortese" style="height: 150px; width: auto; object-fit: contain;" onclick="selecionarOrtese('dedo')" title="Órtese de Dedo">
+      <div>Órtese de Dedo Personalizada</div>
+    </div>
+    <div>
+      <img src="https://i.imgur.com/h4fz1W5.jpeg" class="ortese" onclick="selecionarOrtese('escovar')" title="Órtese para Escovar os Dentes">
+      <div>Órtese para Escovar os Dentes</div>
+    </div>
+    <div>
+      <img src="https://i.imgur.com/SYOvuOs.jpeg" class="ortese" style="height: 150px; width: auto; object-fit: contain;" onclick="selecionarOrtese('digitacao')" title="Órtese para Digitação">
+      <div>Órtese para Digitação</div>
+    </div>
+    <div>
+      <img src="https://i.imgur.com/Ks1XK18.jpeg" class="ortese" onclick="selecionarOrtese('escrever')" title="Órtese para Escrever">
+      <div>Órtese para Escrever</div>
+    </div>
+  </div>
+
+  <!-- Formulário Órtese de Dedo -->
+  <div id="formDedo" class="form-section hidden">
+    <h2>Preencha as medidas dos dedos</h2>
+    <p>Meça a interfalângica proximal (a maior junta de cada dedo) com paquímetro.</p>
+    <div class="hand-container">
+      <div class="hand">
+        <label>Mão Esquerda</label>
+        <img src="https://i.imgur.com/usvCrhv.png" alt="Mão Esquerda Desenho" width="250">
+        <div class="inputs">
+          <input type="number" name="E1" placeholder="D1">
+          <input type="number" name="E2" placeholder="D2">
+          <input type="number" name="E3" placeholder="D3">
+          <input type="number" name="E4" placeholder="D4">
+          <input type="number" name="E5" placeholder="D5">
+        </div>
+      </div>
+      <div class="hand">
+        <label>Mão Direita</label>
+        <img src="https://i.imgur.com/pkQ4ByZ.png" alt="Mão Direita Desenho" width="250">
+        <div class="inputs">
+          <input type="number" name="D1" placeholder="D1">
+          <input type="number" name="D2" placeholder="D2">
+          <input type="number" name="D3" placeholder="D3">
+          <input type="number" name="D4" placeholder="D4">
+          <input type="number" name="D5" placeholder="D5">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campos Profissional -->
+  <div class="form-section">
+    <h2>Informações do Profissional de Saúde</h2>
+    <input type="text" id="profissional" placeholder="Nome do Profissional de Saúde"><br>
+    <input type="tel" id="telefoneProfissional" placeholder="Telefone para contato"><br>
+    <input type="text" id="patologia" placeholder="Patologia do paciente">
+  </div>
+
+  <!-- Formulário Medida da Palma -->
+  <div id="formSimples" class="form-section hidden">
+    <h2>Informe a largura da palma da mão (em cm)</h2>
+    <input type="number" id="larguraPalma" placeholder="Ex: 8.5">
+  </div>
+
+  <button onclick="enviarWhatsApp()">Enviar Pedido</button>
+
+  <footer>Autor: Thales R.<br>Todos os direitos reservados.</footer>
+
+  <script>
+    let tipoOrtese = "";
+
+    function selecionarOrtese(tipo) {
+      tipoOrtese = tipo;
+      document.getElementById("formDedo").classList.add("hidden");
+      document.getElementById("formSimples").classList.add("hidden");
+
+      if (tipo === "dedo") {
+        document.getElementById("formDedo").classList.remove("hidden");
+      } else {
+        document.getElementById("formSimples").classList.remove("hidden");
+      }
+    }
+
+    function enviarWhatsApp() {
+      let mensagem = "Olá, gostaria de solicitar uma órtese:%0A";
+
+      if (tipoOrtese === "dedo") {
+        mensagem += "Tipo: Órtese de Dedo Personalizada%0A";
+        mensagem += "📏 Medidas Mão Esquerda:%0A";
+        for (let i = 1; i <= 5; i++) {
+          const val = document.querySelector(`[name=E${i}]`).value;
+          mensagem += `D${i}: ${val}mm%0A`;
+        }
+        mensagem += "📏 Medidas Mão Direita:%0A";
+        for (let i = 1; i <= 5; i++) {
+          const val = document.querySelector(`[name=D${i}]`).value;
+          mensagem += `D${i}: ${val}mm%0A`;
+        }
+      } else if (tipoOrtese === "escovar" || tipoOrtese === "digitacao" || tipoOrtese === "escrever") {
+        const largura = document.getElementById("larguraPalma").value;
+        mensagem += `Tipo: Órtese para ${tipoOrtese}%0A`;
+        mensagem += `Largura da palma: ${largura} cm%0A`;
+      } else {
+        alert("Selecione uma órtese antes de enviar.");
+        return;
+      }
+
+      mensagem += `Profissional: ${document.getElementById('profissional').value}%0A`;
+      mensagem += `Telefone: ${document.getElementById('telefoneProfissional').value}%0A`;
+      mensagem += `Patologia: ${document.getElementById('patologia').value}%0A`;
+      mensagem += "%0A✅ A fabricação será feita em até 2 dias úteis e enviaremos o código de rastreio assim que for postado. Muito obrigado!";
+      window.open("https://wa.me/5524999537779?text=" + mensagem);
+    }
+  </script>
+</body>
+</html>
