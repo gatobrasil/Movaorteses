@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OrtoFácil3D - Cada Pessoa é Única</title>
   <style>
     :root {
@@ -13,7 +13,6 @@
       --card-bg: #ffffff;
       --text-color: #333;
     }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,7 +20,6 @@
       color: var(--text-color);
       line-height: 1.6;
     }
-
     header {
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: white;
@@ -29,25 +27,21 @@
       text-align: center;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
     h1 {
       font-size: 2.8rem;
       margin-bottom: 10px;
     }
-
     h2 {
       font-weight: 600;
       font-size: 1.8rem;
       color: var(--primary-color);
       margin-bottom: 20px;
     }
-
     .slogan {
       font-size: 1.2rem;
       font-style: italic;
       color: #e3f6ff;
     }
-
     .section {
       max-width: 900px;
       margin: 40px auto;
@@ -56,11 +50,9 @@
       padding: 40px 30px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
-
     .section p {
       font-size: 1.1rem;
     }
-
     .botao-ir {
       background-color: var(--primary-color);
       border: none;
@@ -69,15 +61,16 @@
       color: white;
       border-radius: 50px;
       cursor: pointer;
-      margin: 50px auto;
+      margin: 20px auto;
       display: block;
       transition: background 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      max-width: 300px;
     }
-
     .botao-ir:hover {
       background-color: #004d99;
     }
-
     footer {
       background-color: #eaeff3;
       color: #666;
@@ -108,12 +101,11 @@
     </p>
   </div>
 
-  <button class="botao-ir" onclick="window.location.href='ortese_formulario_final_completo.html'">
-    Escolher minha Órtese
-  </button>
+  <a class="botao-ir" href="modelos_orteses.html">Conheça Nossos Modelos</a>
+  <a class="botao-ir" href="ortese_formulario_final_completo.html">Escolher Minha Órtese</a>
 
   <footer>
-    &copy; 2025 OrtoFácil3D. Todos os direitos reservados.<br>
+    &copy; 2025 OrtoFácil3D. Todos os direitos reservados.<br />
     Tecnologia e cuidado em cada detalhe.
   </footer>
 </body>
