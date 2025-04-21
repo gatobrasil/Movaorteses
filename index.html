@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -132,8 +133,8 @@
 
   <div class="section">
     <h2>Profissionais de Saúde</h2>
-    <p>Trabalhamos exclusivamente com profissionais de saúde. Cadastre-se para conhecer nossos modelos e condições de parceria. Entraremos em contato para apresentar a porcentagem oferecida por cada órtese indicada.</p>
-    <form class="form-profissional" onsubmit="enviarCadastro(); return false;">
+    <p>Trabalhamos exclusivamente com profissionais de saúde. Cadastre-se para receber a apresentação dos nossos modelos de órtese personalizados.</p>
+    <form class="form-profissional" id="cadastroForm">
       <input type="text" id="nomeProf" placeholder="Nome completo" required><br>
       <input type="tel" id="telefoneProf" placeholder="Telefone/WhatsApp" required><br>
       <input type="text" id="profissao" placeholder="Profissão (ex: fisioterapeuta)" required><br>
@@ -158,13 +159,15 @@
   </footer>
 
   <script>
-    function enviarCadastro() {
-      const nome = document.getElementById('nomeProf').value;
-      const telefone = document.getElementById('telefoneProf').value;
-      const profissao = document.getElementById('profissao').value;
-      const mensagem = `Novo cadastro de profissional:%0ANome: ${nome}%0ATelefone: ${telefone}%0AProfissão: ${profissao}`;
-      window.open("https://wa.me/5524999537779?text=" + mensagem, '_blank');
-    }
+    document.getElementById("cadastroForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nome = encodeURIComponent(document.getElementById("nomeProf").value);
+      const telefone = encodeURIComponent(document.getElementById("telefoneProf").value);
+      const profissao = encodeURIComponent(document.getElementById("profissao").value);
+      const mensagem = `Cadastro de profissional:%0ANome: ${nome}%0ATelefone: ${telefone}%0AProfissão: ${profissao}`;
+      const link = `https://wa.me/5524999537779?text=${mensagem}`;
+      window.open(link, '_blank');
+    });
   </script>
 </body>
 </html>
